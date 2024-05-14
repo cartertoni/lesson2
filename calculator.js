@@ -1,24 +1,59 @@
 const readline = require('readline-sync');
+const messages = require('./calculator_messages.json');
 
-console.log('Welcome to Calculator!');
+let prompt = message => readline.question(`=> ${message}\n`);
 
-// console.log("What's the first number?")
+let language = prompt('What language would you like to use? (en/fr/es)? ')
+  .toLowerCase()
+  .trim();
 
-let number1 = readline.question("What's the first number?\n");
-let number2 = readline.question("What's the second number?\n");
-let operation = readline.question(
-  'What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide\n'
-);
+console.log(messages[language].welcome);
 
-let output;
-if (operation === '1') {
-  output = Number(number1) + Number(number2);
-} else if (operation === '2') {
-  output = Number(number1) - Number(number2);
-} else if (operation === '3') {
-  output = Number(number1) * Number(number2);
-} else if (operation === '4') {
-  output = Number(number1) / Number(number2);
+let invalidNumber = number =>
+  number.trimStart() === '' || Number.isNaN(Number(number));
+
+let keepGoing = 'yes';
+
+while (keepGoing === 'yes' || keepGoing === 'si' || keepGoing === 'oui') {
+  let number1 = prompt("What's the first number?");
+
+  while (invalidNumber(number1)) {
+    console.log(messages[language].invalidNumber);
+    number1 = prompt("What's the first number?");
+  }
+
+  let number2 = prompt("What's the second number?");
+
+  while (invalidNumber(number2)) {
+    console.log(messages[language].invalidNumber);
+    number2 = prompt("What's the second number?");
+  }
+
+  let operation = prompt(
+    'What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide'
+  );
+
+  while (!['1', '2', '3', '4'].includes(operation)) {
+    operation = prompt('You must select 1, 2, 3, or 4');
+  }
+
+  let output;
+  switch (operation) {
+    case '1':
+      output = Number(number1) + Number(number2);
+      break;
+    case '2':
+      output = Number(number1) - Number(number2);
+      break;
+    case '3':
+      output = Number(number1) * Number(number2);
+      break;
+    case '4':
+      output = Number(number1) / Number(number2);
+      break;
+  }
+
+  console.log(`The result is: ${output}`);
+
+  keepGoing = prompt(messages[language].continue).toLowerCase().trim();
 }
-
-console.log(`The result is: ${output}`);

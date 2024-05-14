@@ -1,0 +1,17 @@
+{
+  "en": {
+    "welcome": "Welcome to Calculator!",
+    "invalidNumber": "That doesn't look like a valid number",
+    "continue": "Would you like to do another calculation? Type yes to continue calculating."
+  },
+  "fr": {
+    "welcome": "Bienvenue sur Calculatrice!",
+    "invalidNumber": "Cela ne ressemble pas à un numéro valide",
+    "continue": "Souhaitez-vous faire un autre calcul ? Tapez oui pour continuer le calcul."
+  },
+  "es": {
+    "welcome": "¡Bienvenido a Calculadora!",
+    "invalidNumber": "Ese no parece un número válido.",
+    "continue": "¿Quieres hacer otro cálculo? Escriba sí para continuar calculando."
+  }
+}

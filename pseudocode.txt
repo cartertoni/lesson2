@@ -1,0 +1,32 @@
+Receive two numbers as parameters
+Return the sum of those two numbers
+
+START
+
+SET parameters as num1, num2
+PRINT num1 + num2
+
+END
+
+- -
+Receive an array of strings as parameter
+Create a new variable initialized to an empty string
+Iterate through the array of strings 
+  -Concat the current array item to the end of the string
+Return the string
+
+START
+
+SET parameter as strings
+SET newString = ""
+SET iterator = 0
+
+WHILE  iterator <= number of strings
+  SET newString = newString + value of string at space "iterator"
+  iterator = iterator + 1
+
+PRINT newString
+
+END
+
+- -
