@@ -14,10 +14,16 @@ let loanMonths = parseInt(prompt('How many months remain on this loan?'), 10);
 
 let lengthOfLoan = loanYears * 12 + loanMonths;
 
-let monthlyPayment =
-  loanAmount *
-  (monthlyPercentageRate /
-    (1 - Math.pow(1 + monthlyPercentageRate, -lengthOfLoan)));
+let monthlyPayment;
+
+if (monthlyPercentageRate !== 0) {
+  monthlyPayment =
+    loanAmount *
+    (monthlyPercentageRate /
+      (1 - Math.pow(1 + monthlyPercentageRate, -lengthOfLoan)));
+} else {
+  monthlyPayment = loanAmount / lengthOfLoan;
+}
 
 console.log(
   `You must make ${lengthOfLoan} monthly payments of $${monthlyPayment.toFixed(

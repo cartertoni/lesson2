@@ -1,5 +1,5 @@
-const readline = require('readline-sync');
-const messages = require('./calculator_messages.json');
+let readline = require('readline-sync');
+let messages = require('./calculator_messages.json');
 
 let prompt = message => readline.question(`=> ${message}\n`);
 
