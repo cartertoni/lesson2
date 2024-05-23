@@ -5,15 +5,10 @@ let prompt = message => readline.question(`=> ${message}\n`);
 
 let language = '';
 
-let invalidLanguage = language => {
-  if (!(language === 'en' || language === 'fr' || language === 'es')) {
-    console.log('Please select a valid language.');
-    return true;
-  }
-  return false;
-};
+let validLanguages = ['en', 'fr', 'es'];
+let validOperatorSelection = ['1', '2', '3', '4'];
 
-while (invalidLanguage(language)) {
+while (!validLanguages.includes(language)) {
   language = prompt('What language would you like to use? (en/fr/es)? ')
     .toLowerCase()
     .trim();
@@ -43,7 +38,7 @@ while (keepGoing === 'yes' || keepGoing === 'si' || keepGoing === 'oui') {
 
   let operation = prompt(messages[language].operation);
 
-  while (!['1', '2', '3', '4'].includes(operation)) {
+  while (!validOperatorSelection.includes(operation)) {
     operation = prompt(messages[language].operatorError);
   }
 
@@ -60,7 +55,7 @@ while (keepGoing === 'yes' || keepGoing === 'si' || keepGoing === 'oui') {
       break;
     case '4':
       if (Number(number2) === 0) {
-        output = "I don't think you can do that.";
+        output = messages[language].divideByZero;
       } else {
         output = Number(number1) / Number(number2);
       }

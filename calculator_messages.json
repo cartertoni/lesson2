@@ -7,7 +7,8 @@
     "operation": "What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide",
     "operatorError": "You must select 1, 2, 3, or 4",
     "continue": "Would you like to do another calculation? Type yes to continue calculating.",
-    "result": "The result is"
+    "result": "The result is",
+    "divideByZero": "I don't think you can do that"
   },
   "fr": {
     "welcome": "Bienvenue sur Calculatrice!",
@@ -17,7 +18,8 @@
     "operation": "Quelle opération souhaitez-vous effectuer ?\n1) Ajouter 2) Soustraire 3) Multiplier 4) Diviser",
     "operatorError": "Vous devez sélectionner 1, 2, 3 ou 4",
     "continue": "Souhaitez-vous faire un autre calcul ? Tapez oui pour continuer le calcul.",
-    "result": "Le résultat est"
+    "result": "Le résultat est",
+    "divideByZero": "Je ne pense pas que tu puisses faire ça"
   },
   "es": {
     "welcome": "¡Bienvenido a Calculadora!",
@@ -27,6 +29,7 @@
     "operation": "¿Qué operación te gustaría realizar?\n1) Sumar 2) Restar 3) Multiplicar 4) Dividir",
     "operatorError": "Debes seleccionar 1, 2, 3 o 4",
     "continue": "¿Quieres hacer otro cálculo? Escriba sí para continuar calculando.",
-    "result": "El resultado es"
+    "result": "El resultado es",
+    "divideByZero": "No creo que puedas hacer eso"
   }
 }
