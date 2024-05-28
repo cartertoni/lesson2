@@ -1,0 +1,8 @@
+{
+  "welcome": "Welcome to Loan Calculator!",
+  "annualPercentageRate": "What is the annual percentage rate of this loan? Example: 5.85%",
+  "loanAmount": "What is the loan amount?",
+  "loanYears": "How many years remain on this loan?",
+  "loanMonths": "How many months remain on this loan?",
+  "goodbye": "Thanks for calculating! Goodbye."
+}
