@@ -50,7 +50,7 @@ let getLoanLength = () => {
 
 let calculateLoan = (amount, annualPercentageRate, loanYears, loanMonths) => {
   let monthlyPercentageRate = annualPercentageRate / 100 / 12;
-  let lengthOfLoan = loanYears * 12 + loanMonths;
+  let lengthOfLoan = (loanYears * 12) + loanMonths;
   let monthlyPayment;
 
   if (!lengthOfLoan) return console.log(`You must immediately pay $${amount}.`);
