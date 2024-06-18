@@ -1,0 +1,29 @@
+{
+  "validChoices": [
+    {
+      "selection": "rock",
+      "shortName": "r",
+      "winsAgainst": ["scissors", "lizard"]
+    },
+    {
+      "selection": "paper",
+      "shortName": "p",
+      "winsAgainst": ["rock", "spock"]
+    },
+    {
+      "selection": "scissors",
+      "shortName": "sc",
+      "winsAgainst": ["paper", "lizard"]
+    },
+    {
+      "selection": "lizard",
+      "shortName": "l",
+      "winsAgainst": ["paper", "spock"]
+    },
+    {
+      "selection": "spock",
+      "shortName": "sp",
+      "winsAgainst": ["rock", "scissors"]
+    }
+  ]
+}

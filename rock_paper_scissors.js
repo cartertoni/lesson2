@@ -1,8 +1,27 @@
 const readline = require('readline-sync');
 const VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
+const VALID_SHORTHANDS = ['r', 'p', 'sc', 'l', 'sp'];
 
 let prompt = message => {
   return readline.question(`=> ${message}\n`);
+};
+
+let convertChoice = choice => {
+  if (VALID_SHORTHANDS.includes(choice)) {
+    switch (choice) {
+      case 'r':
+        return 'rock';
+      case 'p':
+        return 'paper';
+      case 'sc':
+        return 'scissors';
+      case 'l':
+        return 'lizard';
+      case 'sp':
+        return 'spock';
+    }
+  }
+  return choice;
 };
 
 let checkPlayerWin = (choice, computerChoice) => {
@@ -35,6 +54,22 @@ let checkComputerWin = (choice, computerChoice) => {
   );
 };
 
+let getPlayerChoice = message => {
+  console.clear();
+  let choice = prompt(message).trim().toLowerCase();
+
+  choice = convertChoice(choice);
+
+  while (!VALID_CHOICES.includes(choice)) {
+    console.clear();
+    choice = getPlayerChoice(
+      `That's not a valid choice. Choose one: ${VALID_CHOICES.join(', ')}`
+    );
+  }
+
+  return choice;
+};
+
 let displayWinner = (choice, computerChoice) => {
   if (checkPlayerWin(choice, computerChoice)) {
     console.log('You win!');
@@ -46,24 +81,13 @@ let displayWinner = (choice, computerChoice) => {
 };
 
 while (true) {
-  console.clear();
-  let choice = prompt(`Choose one: ${VALID_CHOICES.join(', ')}`)
-    .trim()
-    .toLowerCase();
-
-  while (!VALID_CHOICES.includes(choice)) {
-    console.clear();
-    choice = prompt(
-      `That's not a valid choice. Choose one: ${VALID_CHOICES.join(', ')}`
-    );
-  }
-
+  let playerChoice = getPlayerChoice(`Choose one: ${VALID_CHOICES.join(', ')}`);
   let randomIndex = Math.floor(Math.random() * VALID_CHOICES.length);
   let computerChoice = VALID_CHOICES[randomIndex];
 
-  console.log(`You chose ${choice}, computer chose ${computerChoice}`);
+  console.log(`You chose ${playerChoice}, computer chose ${computerChoice}`);
 
-  displayWinner(choice, computerChoice);
+  displayWinner(playerChoice, computerChoice);
 
   let answer = prompt('Do you want to play again (y/n)?').toLowerCase();
   while (answer[0] !== 'y' && answer[0] !== 'n') {
