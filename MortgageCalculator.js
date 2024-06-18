@@ -99,8 +99,11 @@ let runCalculator = () => {
   );
 };
 
-do {
+while (true) {
   runCalculator();
-} while (calculateAgain());
+  if (!calculateAgain()) {
+    break;
+  }
+}
 
 console.log(messages.goodbye);
