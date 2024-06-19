@@ -72,7 +72,7 @@ let getPlayerChoice = message => {
   return choice;
 };
 
-let determineWinner = (playerChoice, computerChoice) => {
+let determineGameWinner = (playerChoice, computerChoice) => {
   if (checkPlayerWin(playerChoice, computerChoice)) return 'player';
   if (checkComputerWin(playerChoice, computerChoice)) return 'computer';
   else return 'tie';
@@ -105,9 +105,7 @@ let displayScore = score => {
 let determineMatchWinner = score => {
   if (score.player === 3 || score.computer === 3) {
     console.log(
-      `We have a match winner! ${
-        score.player === 3 ? 'You' : 'Computer'
-      } won!\n`
+      `The match has ended. ${score.player === 3 ? 'You' : 'Computer'} won!\n`
     );
     return true;
   } else return false;
@@ -133,7 +131,7 @@ while (true) {
       `You chose ${playerChoice}, computer chose ${computerChoice}\n`
     );
 
-    let winner = determineWinner(playerChoice, computerChoice);
+    let winner = determineGameWinner(playerChoice, computerChoice);
     displayWinner(winner);
     score = calculateScore(winner, score);
     displayScore(score);
@@ -141,11 +139,14 @@ while (true) {
 
   let answer = prompt('Do you want to play again (y/n)?').toLowerCase();
   while (answer[0] !== 'y' && answer[0] !== 'n') {
-    answer = prompt('Please enter "y" or "n".').toLowerCase();
+    console.clear();
+    answer = prompt(
+      'Invalid selection.\nDo you want to play again? Please enter "y" or "n".'
+    ).toLowerCase();
   }
   if (answer[0] !== 'y') {
     console.clear();
-    console.log('Thanks for playing!');
+    console.log('Thanks for playing. Goodbye!');
     break;
   } else resetGame();
 }
