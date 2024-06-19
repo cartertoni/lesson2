@@ -2,6 +2,8 @@ const readline = require('readline-sync');
 const VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
 const VALID_SHORTHANDS = ['r', 'p', 'sc', 'l', 'sp'];
 
+let score = { player: 0, computer: 0 };
+
 let prompt = message => {
   return readline.question(`=> ${message}\n`);
 };
@@ -55,7 +57,7 @@ let checkComputerWin = (choice, computerChoice) => {
 };
 
 let getPlayerChoice = message => {
-  console.clear();
+  //console.clear();
   let choice = prompt(message).trim().toLowerCase();
 
   choice = convertChoice(choice);
@@ -70,24 +72,72 @@ let getPlayerChoice = message => {
   return choice;
 };
 
-let displayWinner = (choice, computerChoice) => {
-  if (checkPlayerWin(choice, computerChoice)) {
+let determineWinner = (playerChoice, computerChoice) => {
+  if (checkPlayerWin(playerChoice, computerChoice)) return 'player';
+  if (checkComputerWin(playerChoice, computerChoice)) return 'computer';
+  else return 'tie';
+};
+
+let calculateScore = (winner, score) => {
+  if (winner === 'player') {
+    return { player: score.player + 1, computer: score.computer };
+  } else if (winner === 'computer') {
+    return { player: score.player, computer: score.computer + 1 };
+  } else {
+    return score;
+  }
+};
+
+let displayWinner = winner => {
+  if (winner === 'player') {
     console.log('You win!');
-  } else if (checkComputerWin(choice, computerChoice)) {
+  } else if (winner === 'computer') {
     console.log('Computer wins!');
   } else {
     console.log("It's a tie!");
   }
 };
 
+let displayScore = score => {
+  console.log(`\nPlayer: ${score.player}\nComputer: ${score.computer}\n`);
+};
+
+let determineMatchWinner = score => {
+  if (score.player === 3 || score.computer === 3) {
+    console.log(
+      `We have a match winner! ${
+        score.player === 3 ? 'You' : 'Computer'
+      } won!\n`
+    );
+    return true;
+  } else return false;
+};
+
+let resetGame = () => {
+  console.clear();
+  score = { player: 0, computer: 0 };
+};
+
+console.clear();
+
 while (true) {
-  let playerChoice = getPlayerChoice(`Choose one: ${VALID_CHOICES.join(', ')}`);
-  let randomIndex = Math.floor(Math.random() * VALID_CHOICES.length);
-  let computerChoice = VALID_CHOICES[randomIndex];
+  while (!determineMatchWinner(score)) {
+    let playerChoice = getPlayerChoice(
+      `Choose one: ${VALID_CHOICES.join(', ')}`
+    );
+    let randomIndex = Math.floor(Math.random() * VALID_CHOICES.length);
+    let computerChoice = VALID_CHOICES[randomIndex];
 
-  console.log(`You chose ${playerChoice}, computer chose ${computerChoice}`);
+    console.clear();
+    console.log(
+      `You chose ${playerChoice}, computer chose ${computerChoice}\n`
+    );
 
-  displayWinner(playerChoice, computerChoice);
+    let winner = determineWinner(playerChoice, computerChoice);
+    displayWinner(winner);
+    score = calculateScore(winner, score);
+    displayScore(score);
+  }
 
   let answer = prompt('Do you want to play again (y/n)?').toLowerCase();
   while (answer[0] !== 'y' && answer[0] !== 'n') {
@@ -97,5 +147,5 @@ while (true) {
     console.clear();
     console.log('Thanks for playing!');
     break;
-  }
+  } else resetGame();
 }
