@@ -57,7 +57,6 @@ let checkComputerWin = (choice, computerChoice) => {
 };
 
 let getPlayerChoice = message => {
-  //console.clear();
   let choice = prompt(message).trim().toLowerCase();
 
   choice = convertChoice(choice);
