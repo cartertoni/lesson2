@@ -77,13 +77,12 @@ let determineGameWinner = (playerChoice, computerChoice) => {
   else return 'tie';
 };
 
-let calculateScore = (winner, score) => {
+let calculateScore = winner => {
   if (winner === 'player') {
-    return { player: score.player + 1, computer: score.computer };
-  } else if (winner === 'computer') {
-    return { player: score.player, computer: score.computer + 1 };
-  } else {
-    return score;
+    score.player += 1;
+  }
+  if (winner === 'computer') {
+    score.computer += 1;
   }
 };
 
@@ -116,7 +115,6 @@ let resetGame = () => {
 };
 
 console.clear();
-
 while (true) {
   while (!determineMatchWinner(score)) {
     let playerChoice = getPlayerChoice(
@@ -132,7 +130,7 @@ while (true) {
 
     let winner = determineGameWinner(playerChoice, computerChoice);
     displayWinner(winner);
-    score = calculateScore(winner, score);
+    calculateScore(winner, score);
     displayScore(score);
   }
 
